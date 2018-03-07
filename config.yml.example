@@ -1,0 +1,12 @@
+POLAR_USER: ''
+POLAR_PASS: ''
+SPORTSTRACKER_USER: ''
+SPORTSTRACKER_PASS: ''
+ID_PRODUCT: '*'
+ID_VENDOR: '*'
+SYNC_DELAY: 80
+SUCCESS_TITLE: 'Synchronization completed'
+SUCCESS_SYNCED_MSG: '{} activities have been saved'
+SUCCESS_NOT_SYNCED_MSG: 'You do not have any new activities'
+FAILURE_TITLE: 'Synchronization failed'
+FAILURE_MSG: 'An error occurred during synchronization'

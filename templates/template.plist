@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>{{ label }}</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>{{ python }}</string>
+        <string>{{ synchronizer }}</string>
+    </array>
+    <key>StandardErrorPath</key>
+    <string>/tmp/local.tf.check_up.stderr</string>
+    <key>StandardOutPath</key>
+    <string>/tmp/local.tf.check_up.stdout</string>
+    <key>EnablePressuredExit</key>
+    <false/>
+    <key>LaunchEvents</key>
+    <dict>
+        <key>com.apple.iokit.matching</key>
+            <dict>
+                <key>com.apple.device-attach</key>
+                <dict>
+                    <key>idProduct</key>
+                    <integer>{{ idProduct }}</integer>
+                    <key>idVendor</key>
+                    <integer>{{ idVendor }}</integer>
+                    <key>IOProviderClass</key>
+                    <string>IOUSBDevice</string>
+                    <key>IOMatchLaunchStream</key>
+                    <true/>
+                </dict>
+        </dict>
+    </dict>
+</dict>
+</plist>
