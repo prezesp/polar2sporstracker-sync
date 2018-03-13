@@ -4,7 +4,6 @@ from sportstracker import SportsTrackerLib
 import logging
 import os
 import re
-import time
 import traceback
 import yaml
 
@@ -13,22 +12,19 @@ class App:
 		workdir = os.path.dirname(os.path.realpath(__file__))
 
 		# enable logging
-		logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.INFO, filename=workdir+'/output.log')
-
-		# read config file
-		config = yaml.load(open(workdir+'/config.yml'))
-
-		# gives your polar time to synchronize with web app
-		time.sleep(int(config['SYNC_DELAY']) if 'SYNC_DELAY' in config else 80)
+		logging.basicConfig(format='%(asctime)s %(levelname)s:%(message)s', level=logging.INFO, filename=workdir+'/output.log')
 
 		try:
+			# read config file
+			config = yaml.load(open(workdir+'/config.yml'))
+
 			client = FlowClient()
 			client.login(config['POLAR_USER'], config['POLAR_PASS'])
 
-			#no arguments will fetch all activities in the last 30 days
+			# get last 10 activities
 			activities = sorted(filter(lambda a: a.type == "EXERCISE" and (a.distance and a.distance > 0), client.activities()), key= lambda a: a.timestamp)
-
-
+			activities = activities[-10:]
+			
 			stlib = SportsTrackerLib()
 			stlib.login(config['SPORTSTRACKER_USER'], config['SPORTSTRACKER_PASS'])
 
