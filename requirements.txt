@@ -3,6 +3,6 @@ Jinja2==2.10
 MarkupSafe==1.0
 PyYAML==3.12
 requests==2.6.0
-git+git://github.com/prezesp/sporstracker-lib@master#egg=sportstrackerlib
+git+git://github.com/prezesp/py-sporstracker@master#egg=py_sportstracker
 git+git://github.com/prezesp/flow-client@master#egg=flow
 git+git://github.com/prezesp/py-iokit-matching-handler@master#egg=py-iokit-matching-handler
