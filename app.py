@@ -7,6 +7,12 @@ import re
 import traceback
 import yaml
 
+# mapping between polar and sportstracker
+activitiesMapping = {
+	'RUNNING': 1,
+	'CYCLING': 2
+}
+
 class App:
 	def run(self):
 		workdir = os.path.dirname(os.path.realpath(__file__))
@@ -41,9 +47,10 @@ class App:
 			added = 0
 			for activity in activities:
 				if (activity.listItemId not in synced):
-					stlib.add_workout(str(activity.listItemId) + '.gpx', activity.gpx(), '[polar:{}]'.format(activity.listItemId))
+					sport_name = activity.sport().upper()
+					sportId = activitiesMapping[sport_name] if sport_name in activitiesMapping else 1
+					stlib.add_workout(str(activity.listItemId) + '.gpx', activity.gpx(), sportId, '[polar:{}]'.format(activity.listItemId))
 					added = added + 1
-
 
 			Notifications.display(config['SUCCESS_TITLE'], config['SUCCESS_SYNCED_MSG'].format(added) if added > 0 else config['SUCCESS_NOT_SYNCED_MSG'])
 
